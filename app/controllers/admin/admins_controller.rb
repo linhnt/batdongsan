@@ -3,7 +3,8 @@ class Admin::AdminsController < Admin::BaseAdminController
   before_filter :build_object, only: [:new, :create]
 
   def index
-    @admins = Admin.all.page params[:page]
+    @q = Admin.search params[:q]
+    @admins = @q.result.page params[:page]
   end
 
   def show
