@@ -1,0 +1,41 @@
+@import "shared/mixins.css.less";
+#shift-show{
+  table.weekly-shift{
+    vertical-align: inherit;
+    table{
+      border: none;
+      tr, td{
+        border: none;
+        border-bottom: 1px solid #c9c9c9;
+        &:last-child{
+          border-bottom: none;
+        }
+        background: transparent;
+        height: 120px;
+        min-width: 115px;
+        text-align: center;
+      }
+      select{
+        color: #F60;
+        width: 50px;
+        height: 32px;
+        font-size: 18px;
+      }
+      label{
+        &.checked{
+          &.destroy{
+            background: #fcc;
+            color: #060;
+          }
+          &.tel{
+            background: #cfc;
+            color: #060;
+          }
+        }
+      }
+      &.week td:hover{
+        background: #ffc;
+      }
+    }
+  }
+}

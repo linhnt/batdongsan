@@ -1,0 +1,95 @@
+@import "shared/mixins.css.less";
+#shift-show{
+  .page-header{
+    margin-bottom: 17px;
+    border-bottom: 1px solid #ddd;
+    .box-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+  }
+
+  .btn.white, .alert-message.white{
+    .horizontal-gradient(#ffffff, #e6e6e6);
+    background-repeat: repeart-x;
+  }
+
+  .alert-message{
+    position: relative;
+    padding: 7px 15px;
+    margin-bottom: 18px;
+    color: #404040;
+    .horizontal-gradient(#fceec1, #eedc94);
+    border-color: #eedc94 #eedc94 #e4c652;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-width: 1px;
+    border-style: solid;
+    .border-radius(4px);
+    .box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.25))
+  }
+
+  .btn.error{
+    .horizontal-gradient(#ee5f5b, #c42c35);
+    border-color: #c43c35 #c43c35 #882a25;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+  }
+
+  .alert-message.block-message{
+    background-image: none;
+    background-color: #fdf5d9;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    padding: 14px;
+    border-color: #fceec1;
+    .box-shadow(none);
+  }
+
+  .alert-message.block-message.error, .alert-message.block-message.success, .alert-message.block-message.info{
+    color: #404040;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .alert-message.block-message.error{
+    background-color: #fddfde;
+    border-color: #fbc7c6;
+  }
+
+  .alert-message.block-message.info{
+    background-color: #ddf4fb;
+    border-color: #c6edf9;
+  }
+
+  .alert-message.block-message.success{
+    background-color: #d1eed1;
+    border-color: #bfe7bf;
+  }
+
+  .alert-message a{
+    font-weight: bold;
+    color: #404040;
+  }
+
+  .btn.success{
+    .horizontal-gradient(#62c462, #57a957);
+    border-color: #57a957 #57a957 #3d773d;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    &:hover{
+      color: #ffffff;
+    }
+  }
+
+  table.month td>.alert-message{
+    margin-bottom: 0px;
+  }
+
+  table.month td{
+    vertical-align: top;
+  }
+
+  table.month{
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 0;
+    font-size: 13px;
+    border-collapse: collapse;
+  }
+}

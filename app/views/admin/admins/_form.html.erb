@@ -1,0 +1,83 @@
+<%= form_for [:admin, @admin], html: {class: "form-horizontal"} do |f| %>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= t ".requirement" %></th>
+        <th><%= t ".field" %></th>
+        <th><%= t ".value" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= requirement_label @admin, :name %></td>
+        <td><%= f.label :name %></td>
+        <td>
+          <%= f.text_field :name, class: "input-xlarge", required: true %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("name").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :email %></td>
+        <td><%= f.label :email %></td>
+        <td>
+          <%= f.text_field :email, class: "input-xlarge", required: true %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("email").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, (@admin.new_record? ? :password : :_) %></td>
+        <td><%= f.label :password %></td>
+        <td>
+          <%= f.password_field :password, class: "input-xlarge", placeholder: "非表示" %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("password").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.label :password_confirmation %></td>
+        <td>
+          <%= f.password_field :password_confirmation, class: "input-xlarge", placeholder: "非表示" %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("password_confirmation").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :disabled %></td>
+        <td><%= f.label :disabled %></td>
+        <td>
+          <%= f.check_box :disabled %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("disabled").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :m_prefecture_ids %></td>
+        <td><%= f.label :m_prefecture_ids %></td>
+        <td>
+<% M::Prefecture.all.each do |pref| %>
+          <%= check_box_tag "admin[m_prefecture_ids][]", pref.id, @admin.m_prefectures.include?(pref) %>
+          <%= pref.name %>
+<% end %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :organization_id %></td>
+        <td><%= f.label :organization_id %></td>
+        <td>
+          <%= f.collection_select :organization_id, Organization.all, :id, :name, {} %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("organization_id").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @admin, :permission_level %></td>
+        <td><%= f.label :permission_level %></td>
+        <td>
+          <%= f.select :permission_level, Admin::PERMISSION_LEVEL.map{|name, level| [Admin.permission_level_label(level), level]} %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("m_permission_id").first %></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-actions">
+    <%= f.submit class: %w(btn btn-primary) %>
+  </div>
+<% end %>

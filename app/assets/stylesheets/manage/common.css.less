@@ -1,0 +1,91 @@
+@import "shared/mixins.css.less";
+img {
+  &.event {
+    max-width: 80px;
+  }
+  &.profile-image-mini {
+    max-height: 60px;
+  }
+}
+.description {
+  li {
+    color: black;
+  }
+  h1 {
+    font-size: large;
+    color: black;
+  }
+  p {
+    color: black;
+  }
+}
+p, li {
+  &.notice {
+    color: #F00;
+  }
+  &.success {
+    color: #46a546;
+  }
+}
+td, th {
+  .updated_at {
+    text-align: right;
+    div {
+      display: block;
+      width: 100%;
+    }
+  }
+  .event-image, .staff-image {
+    text-align: center;
+    div {
+      display: block;
+      width: 100%;
+    }
+  }
+  .content {
+    text-align: center;
+    div {
+      display: block;
+      width: 100%;
+      textarea {
+        width: 100%;
+      }
+    }
+  }
+  label {
+    display: inline;
+  }
+}
+.submit {
+  text-align: center;
+  div {
+    display: block;
+    width: 100%;
+  }
+}
+div#girl-order {
+  .clearfix();
+}
+div.girl-container {
+  margin: 10px;
+  div {
+    text-align: center;
+    div {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+.disabled-field {
+  cursor: not-allowed;
+  border: none !important;
+  background: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  .box-shadow(none);
+}
+select.disabled-field {
+  -webkit-appearance: textfield !important;
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}

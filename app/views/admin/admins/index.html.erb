@@ -1,0 +1,93 @@
+<%= stylesheet_link_tag "admin/admins/index" %>
+<section id="admins-index" class="row-fluid">
+  <h1 class="page-title"><%= t ".title" %></h1>
+  <div class="actions">
+    <%= link_to t(".add"), new_admin_admin_path, class: :btn %>
+    <%= link_to t(".filter"), "#", class: %w(btn search-form-toggle), "data-target" => "search-form" %>
+  </div>
+  <%= search_form_for @q, url: admin_admins_path, method: :get,
+    html: {id: "search-form", class: "search-form #{@q.conditions.empty? ? "" : "show"}"} do |f| %>
+    <div class="row-fluid search-row">
+      <div class="span4 search-col">
+        <%= f.label :name_cont %>
+        <%= f.text_field :name_cont %>
+      </div>
+      <div class="span4 search-col">
+        <%= f.label :email_cont %>
+        <%= f.text_field :email_cont %>
+      </div>
+    </div>
+    <div class="row-fluid search-row">
+      <div class="span4 search-col">
+        <%= f.label :created_at %>
+        <%= text_field_tag :month_created_at, f.object.created_at, {id: :month_created_at} %>
+        <%= f.hidden_field :month_created_at_date_equals %>
+      </div>
+      <div class="span4 search-col">
+        <%= f.label :m_prefecture_ids %>
+        <%= f.collection_select :m_prefectures_id_eq, M::Prefecture.all, :id, :name_with_furigana, include_blank: t("search_form.all") %>
+      </div>
+      <div class="span4 search-col">
+        <%= f.label :disabled_eq %>
+        <%= f.select :disabled_eq, [[t(".disabled_false"), :false],[t(".disabled_true"), :true]], include_blank: t("search_form.all") %>
+      </div>
+    </div>
+    <div class="row-fluid search-row">
+      <div class="span12 search-col">
+        <%= f.submit t(".search"), class: :btn %>
+      </div>
+    </div>
+  <% end %>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th><%= Admin.h :name %></th>
+      <th><%= Admin.h :email %></th>
+      <th><%= Admin.h :permission_level %></th>
+      <th><%= Admin.h :disabled %></th>
+      <th><%= Admin.h :created_at %></th>
+      <th><%= Admin.h :updated_at %></th>
+      <th></th>
+      <th></th>
+    </tr>
+<% @admins.each do |admin| -%>
+    <tr>
+      <td><%= link_to "#{admin.name}#{t(".you") if current_admin.me? admin}", admin_admin_path(admin) %></td>
+      <td><%= mail_to admin.email, admin.email %></td>
+      <td><%= admin.permission_level_label %></td>
+      <td><%= admin.disabled ? t(".disabled_true") : t(".disabled_false") %></td>
+      <td><%= admin.created_at %></td>
+      <td><%= admin.updated_at %></td>
+      <td><%= link_to t(".edit"), edit_admin_admin_path(admin) %></td>
+<%   if current_admin.me? admin -%>
+      <td><%= t ".destroy" %></td>
+<%   else -%>
+      <td><%= link_to t(".destroy"), admin_admin_path(admin), method: :delete, data: {confirm: t("confirmation.delete")} %></td>
+<%   end -%>
+    </tr>
+<% end -%>
+  </table>
+</section>
+<% content_for :bottom do %>
+<script>
+$(function(){
+  $("#month_created_at").datepicker({
+    dateFormat: "yy-mm",
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    onClose: function(input, inst){
+      var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+      var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+      var $this = $(this);
+      $this.datepicker("setDate", new Date(year, month, 1));
+      $("#q_month_created_at_date_equals").val($this.val().replace("-", ""));
+    }
+  });
+});
+</script>
+<style>
+  .ui-datepicker-calendar{
+    display: none;
+  }
+</style>
+<% end %>

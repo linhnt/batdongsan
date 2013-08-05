@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Batdongsan</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
-</html>
+<% content_for :stylesheets do
+  #TODO "application" を適するものに変えてapplication.cssは削除して下さい
+  ["application"].each do |stylesheet| -%>
+    <%= stylesheet_link_tag stylesheet, media: "all" %>
+  <% end -%>
+<% end-%>
+<% content_for :javascripts do -%>
+<%= javascript_include_tag(:application) %>
+<% end -%>
+<%= render partial: "layouts/base_layout" %>

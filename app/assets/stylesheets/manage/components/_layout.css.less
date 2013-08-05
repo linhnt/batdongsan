@@ -1,0 +1,89 @@
+@charset "utf-8";
+@import "shared/mixins.css.less";
+
+body {
+  font-size: 13px;
+  line-height: 1.35;
+  background: #fcfcfc;
+}
+
+a {
+  text-decoration: none;
+  &:active {
+    color: #b36200;
+  }
+  &:link {
+    text-decoration: underline;
+    color: #f58700;
+  }
+  &:visited {
+    color: #f58700;
+  }
+  &:hover {
+    color: #b36200;
+  }
+}
+
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+  border-collapse: collapse;
+  thead, tfoot {
+    .border-radiuses(3, 0, 0, 3);
+  }
+  th, td {
+    border-bottom: 1px solid #c9c9c9;
+    border-left: 1px solid #c9c9c9;
+    padding: 4px 8px;
+  }
+  tbody tr:nth-child(odd) {
+    background: #f6f6f6;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #444;
+}
+
+ul, ol {
+  li {
+    list-style-type: none;
+    margin: 0 0 3px 15px;
+  }
+}
+
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #c9c9c9;
+}
+h3 {
+  font-size: 15px;
+}
+h4, h5, h6 {
+  font-size: 12px;
+}
+
+
+/* コンテンツレイアウト -------------------------------- */
+#manage-contents-container {
+  padding-top: 20px;
+  #manage-nav {
+    width: 230px;
+    padding: 8px 8px 8px 15px;
+    float: left;
+  }
+  #manage-contents {
+    margin-left: 278px;
+    margin-right: 20px;
+  }
+  .clearfix();
+}
+
+
+

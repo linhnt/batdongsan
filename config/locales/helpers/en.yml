@@ -1,0 +1,9 @@
+en:
+  viewhelper:
+    requirement:
+      text:
+        required: "Required"
+        not_required: "Not Required"
+      type:
+        required: "warning"
+        not_required: "info"

@@ -1,6 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
+require "csv"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -17,6 +22,7 @@ module Batdongsan
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(lib lib/paperclip app/models/ckeditor)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -35,6 +41,9 @@ module Batdongsan
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :en
+    config.i18n.locale = :en
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
@@ -58,5 +67,9 @@ module Batdongsan
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.paths["config/routes"].unshift Rails.root.join("config/routes/admin.rb")
+    config.paths["config/routes"].unshift Rails.root.join("config/routes/user.rb")
+
+    config.action_view.field_error_proc = proc { |input, instance| input }
   end
 end

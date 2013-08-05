@@ -1,0 +1,74 @@
+en:
+  errors: &errors
+    format: ! '%{attribute}%{message}'
+    messages:
+      accepted: を受諾してください。
+      blank: を入力してください。
+      confirmation: と確認の入力が一致しません。
+      empty: を入力してください。
+      equal_to: は%{count}にしてください。
+      even: は偶数にしてください。
+      exclusion: は予約されています。
+      greater_than: は%{count}より大きい値にしてください。
+      greater_than_or_equal_to: は%{count}以上の値にしてください。
+      inclusion: を正しく入力してください。
+      invalid: は不正な値です。
+      less_than: は%{count}より小さい値にしてください。
+      less_than_or_equal_to: は%{count}以下の値にしてください。
+      not_a_number: は数値で入力してください。
+      not_an_integer: は整数で入力してください。
+      odd: は奇数にしてください。
+      record_invalid: バリデーションに失敗しました。 %{errors}
+      taken: はすでに存在します。
+      too_long: は%{count}文字以内で入力してください。
+      too_short: は%{count}文字以上で入力してください。
+      wrong_length: は%{count}文字で入力してください。
+      invalid_date: "is not a valid date"
+      invalid_time: "is not a valid time"
+      invalid_datetime: "is not a valid datetime"
+      is_at: "must be at %{restriction}"
+      before: は%{restriction}より前でなければなりません。
+      on_or_before: "must be on or before %{restriction}"
+      after: "must be after %{restriction}"
+      on_or_after: "must be on or after %{restriction}"
+      extension_white_list_error: "には jpg, jpeg, gif, png のみ投稿できます。"
+      mini_magick_processing_error: "には jpg, jpeg, gif, png のみ投稿できます。"
+      date_greater: "にはもっと先の日を入力してください。"
+      incorrect_postal_code: "が正しくありません"
+      too_many_events: "一日に作成できるイベント数の上限を越えています"
+    template:
+      body: 次の項目を確認してください。
+      header:
+        one: ! '%{model}にエラーが発生しました。'
+        other: ! '%{model}に%{count}個のエラーが発生しました。'
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M:%S'
+      datetime: '%Y-%m-%d %H:%M:%S'
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    messages:
+      successful:
+        created: "%{model}を作成しました。"
+        updated: "%{model}を更新しました。"
+    errors:
+      <<: *errors
+    models:
+      staff: "在籍女性"
+    attributes:
+      admin:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        disabled: "状態"
+        created_at: "作成日"
+        updated_at: "更新日"
+    values:
+      staff:
+        visibility:
+          true: "表示"
+          false: "非表示"

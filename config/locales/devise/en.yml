@@ -1,0 +1,66 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "本登録が完了し、ログインできるようになりました。"
+      send_instructions: "本登録のためのメールをお送りいたしました。"
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
+    failure:
+      already_authenticated: "既にログイン済です。"
+      inactive: "あなたのアカウントは、まだ有効ではありません。"
+      invalid: "メールアドレスかパスワードが間違っています。"
+      invalid_token: "認証トークンが正しくありません。"
+      locked: "あなたのアカウントはロックされています。"
+      not_found_in_database: "メールアドレスかパスワードが間違っています。"
+      timeout: "セッションの有効期限が切れました。ログインし直してください。"
+      unauthenticated: "ログインしてください。"
+      unconfirmed: "あなたのアカウントは、まだ本登録されていません。"
+    mailer:
+      confirmation_instructions:
+        subject: "アカウントの本登録"
+      reset_password_instructions:
+        subject: "パスワードのリセット"
+      unlock_instructions:
+        subject: "Unlock Instructions"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions about how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password was changed successfully. You are now signed in."
+      updated_not_active: "Your password was changed successfully."
+    registrations:
+      destroyed: "退会が完了しました。"
+      signed_up: "ログインしました。"
+      signed_up_but_inactive: "あなたのアカウントは、有効ではありません。"
+      signed_up_but_locked: "あなたのアカウントは、凍結されています。"
+      signed_up_but_unconfirmed: "あなたのアカウントは、本登録されていません。"
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
+      updated: "アカウントの情報を更新しました。"
+    sessions:
+      manager:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+      admin:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+      staff:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+    unlocks:
+      send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    messages:
+      already_confirmed: "あなたのアカウントは、既に本登録されています。ログインしてください。"
+      confirmation_period_expired: "は %{period} 以内に行われる必要があります。もういちど仮登録してください。"
+      expired: "の有効期限が切れました。もういちど操作してください。"
+      not_found: "は見つかりませんでした。"
+      not_locked: "は凍結されていません。"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

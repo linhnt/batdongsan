@@ -1,0 +1,80 @@
+en:
+  user:
+    shops:
+      show:
+        update:
+          success: "お店を更新しました"
+      data_edit:
+        blank_option: "選択してください。"
+  admin:
+    components:
+      header:
+        logged_in_as: "でログイン中"
+        logout: "ログアウト"
+      side_menu:
+        home:
+          header: "ホーム"
+        manage_shops:
+          header: "お店情報の管理"
+          shops: "お店の編集追加"
+          staffs: "登録女性一覧"
+          banners: "有料広告掲載"
+          charges: "掲載料金一覧"
+          auctions: "オークション"
+          announcements: "お知らせ"
+          shop_groups: "店舗グループ"
+          blogs: "ブログ管理"
+    admins:
+      index:
+        title: "スタッフ一覧"
+        add: "スタッフを追加する"
+        filter: "条件指定検索"
+        search: "検索"
+        destroy: "削除"
+        edit: "編集"
+        destroyed: "スタッフ %{name} を削除しました。"
+        you: "（あなた）"
+        disabled_true: "無効"
+        disabled_false: "有効"
+      new:
+        title: "スタッフの追加"
+        back: "スタッフ一覧に戻る"
+      edit:
+        title: "スタッフ %{name} の編集"
+        back: "スタッフ一覧に戻る"
+      form:
+        requirement: "条件"
+        field: "説明"
+        value: "入力"
+      show:
+        title: "%{name}"
+        requirement: "条件"
+        field: "説明"
+        value: "入力"
+        edit: "編集する"
+        back: "スタッフ一覧に戻る"
+        created: "スタッフ %{name} を作成しました。"
+        updated: "スタッフ %{name} を編集しました。"
+        disabled_true: "無効"
+        disabled_false: "有効"
+  views:
+    pagination:
+      first: "Trang đầu"
+      last: "Trang cuối"
+      next: "Next"
+      previous: "Back"
+      truncate: "..."
+    common:
+      undeletable: "関連するデータが残っているため、削除できません"
+  blog:
+    posts:
+      index:
+        update_blog: "ブログ設定を更新しました。"
+        update_success: "投稿を更新しました。"
+        update_falure: "投稿を更新できませんでした。"
+        destroy_success: "投稿を削除しました。"
+        destroy_falure: "投稿を削除できませんでした。"
+  confirmation:
+    delete: "本当に削除してもよろしいですか？"
+  search_form:
+    all: "全て"
