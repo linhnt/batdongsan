@@ -23,27 +23,6 @@
         <td><%= Admin.h :email %></td>
         <td><%= @admin.email %></td>
       </tr>
-      <tr>
-        <td><%= requirement_label @admin, :disabled %></td>
-        <td><%= Admin.h :disabled %></td>
-        <td><%= @admin.disabled ? t(".disabled_true") : t(".disabled_false") %></td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :m_prefecture_ids %></td>
-        <td><%= Admin.h :m_prefecture_ids %></td>
-        <td><%= @admin.m_prefectures.map(&:name).join(", ") %></td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :organization_id %></td>
-        <td><%= Admin.h :organization_id %></td>
-        <td><%= @admin.organization.name %></td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :permission_level %></td>
-        <td><%= Admin.h :permission_level %></td>
-        <td><%= @admin.permission_level_label %></td>
-      </tr>
-      <tr>
     </tbody>
   </table>
 </section>

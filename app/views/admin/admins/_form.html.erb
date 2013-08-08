@@ -41,40 +41,6 @@
           <span class="validation_error_message"><%= f.full_error_messages_for("password_confirmation").first %></span>
         </td>
       </tr>
-      <tr>
-        <td><%= requirement_label @admin, :disabled %></td>
-        <td><%= f.label :disabled %></td>
-        <td>
-          <%= f.check_box :disabled %>
-          <span class="validation_error_message"><%= f.full_error_messages_for("disabled").first %></span>
-        </td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :m_prefecture_ids %></td>
-        <td><%= f.label :m_prefecture_ids %></td>
-        <td>
-<% M::Prefecture.all.each do |pref| %>
-          <%= check_box_tag "admin[m_prefecture_ids][]", pref.id, @admin.m_prefectures.include?(pref) %>
-          <%= pref.name %>
-<% end %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :organization_id %></td>
-        <td><%= f.label :organization_id %></td>
-        <td>
-          <%= f.collection_select :organization_id, Organization.all, :id, :name, {} %>
-          <span class="validation_error_message"><%= f.full_error_messages_for("organization_id").first %></span>
-        </td>
-      </tr>
-      <tr>
-        <td><%= requirement_label @admin, :permission_level %></td>
-        <td><%= f.label :permission_level %></td>
-        <td>
-          <%= f.select :permission_level, Admin::PERMISSION_LEVEL.map{|name, level| [Admin.permission_level_label(level), level]} %>
-          <span class="validation_error_message"><%= f.full_error_messages_for("m_permission_id").first %></span>
-        </td>
-      </tr>
     </tbody>
   </table>
   <div class="form-actions">
