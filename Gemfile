@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem "mysql2"
 gem "devise"
 gem "state_machine"
 gem "rails_config"
@@ -26,6 +25,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem "mysql2"
   gem "pry-rails"
   gem "pry"
   gem "pry-nav"
@@ -34,4 +34,8 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "rails-erd"
+end
+
+group :production do
+  gem "pg"
 end
