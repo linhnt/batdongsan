@@ -71,5 +71,6 @@ module Batdongsan
     config.paths["config/routes"].unshift Rails.root.join("config/routes/user.rb")
 
     config.action_view.field_error_proc = proc { |input, instance| input }
+    config.assets.initialize_on_precompile = false
   end
 end

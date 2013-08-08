@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem "pg"
+
 
 gem "devise"
 gem "state_machine"
@@ -35,4 +35,8 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "rails-erd"
+end
+
+group :production do
+  gem "pg"
 end
