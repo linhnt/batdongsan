@@ -10,10 +10,10 @@ en:
     components:
       header:
         logged_in_as: "でログイン中"
-        logout: "ログアウト"
+        logout: "Thoát"
       side_menu:
         home:
-          header: "ホーム"
+          header: "Menu"
         manage_shops:
           header: "お店情報の管理"
           shops: "お店の編集追加"
@@ -26,13 +26,13 @@ en:
           blogs: "ブログ管理"
     admins:
       index:
-        title: "スタッフ一覧"
-        add: "スタッフを追加する"
-        filter: "条件指定検索"
-        search: "検索"
-        destroy: "削除"
-        edit: "編集"
-        destroyed: "スタッフ %{name} を削除しました。"
+        title: "Admin"
+        add: "Thêm mới"
+        filter: "Lọc"
+        search: "Tìm"
+        destroy: "Xóa"
+        edit: "Sửa"
+        destroyed: "Xóa admin thành công"
         you: "（あなた）"
         disabled_true: "無効"
         disabled_false: "有効"
@@ -75,6 +75,6 @@ en:
         destroy_success: "投稿を削除しました。"
         destroy_falure: "投稿を削除できませんでした。"
   confirmation:
-    delete: "本当に削除してもよろしいですか？"
+    delete: "Bạn chắc chắn xóa?"
   search_form:
     all: "全て"

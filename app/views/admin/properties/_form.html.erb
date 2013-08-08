@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google maps select</title>
+    <%= stylesheet_link_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "add" %>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <%= javascript_include_tag "bootstrap.min"%>
+    <%= javascript_include_tag "add"%>
+    <%= javascript_include_tag "live"%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h4 class="header">Nhập Bất động sản mới</h4>
+        <div class="content">
+          <%= form_for [:admin, @property], html: {class: "form-horizontal"} do |f| %>
+            <fieldset>
+              <legend>Thông tin cơ bản</legend>
+              
+              <%= f.label :area %>
+              <%= f.text_field :area, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("area").first %></span>
+              
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Tọa độ<a class="btn btn-danger pull-right remove-area">Xóa hết</a></legend>
+              <label class="checkbox" title="Tự động chọn vùng hình vuông với bán kính chọn trước">
+                <input type="checkbox" name="auto-select">Chọn vùng tự động 
+                <span class="loader pull-right" style="display: none">Đang tải...</span>
+              </label>
+              <div class="point-list" data-hint='<span class="help-block">Click lên bản đồ để khoanh vùng</span>'>
+                <span class="help-block">Click lên bản đồ để khoanh vùng</span>
+                <ol></ol>
+              </div>
+            </fieldset>
+
+            <hr>
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="map-canvas"></div>
+    </div>
+  </body>
+</html>

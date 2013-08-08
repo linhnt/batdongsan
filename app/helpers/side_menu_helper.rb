@@ -3,7 +3,11 @@ module SideMenuHelper
     [
       {
         group: :home,
-        heading: ->{"#"}
+        heading: ->{"#"},
+        collapses: {
+          admins: -> {admin_admins_path},
+          properties: ->{admin_properties_path},
+        }
       },
     ].compact
   end

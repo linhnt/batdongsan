@@ -1,0 +1,61 @@
+<section id="properties-index" class="row-fluid">
+  <h1 class="page-title"><%= t(".title") %></h1>
+  <div class="actions">
+    <%= link_to t(".add"), new_admin_property_path, class: :btn %>
+    <%= link_to t(".filter"), "#", class: %w(btn search-form-toggle), "data-target" => "search-form" %>
+  </div>
+  <%= search_form_for @q, url: admin_properties_path, method: :get,
+    html: {id: "search-form", class: "search-form #{@q.conditions.empty? ? "" : "show"}"} do |f| %>
+    <div class="row-fluid search-row">
+      <div class="span4 search-col">
+        <%= f.label :area_eq %>
+        <%= f.text_field :area_eq %>
+      </div>
+      <div class="span4 search-col">
+        <%= f.label :useable_area_eq %>
+        <%= f.text_field :useable_area_eq %>
+      </div>
+      <div class="span4 search-col">
+        <%= f.label :floor_cnt_eq %>
+        <%= f.text_field :floor_cnt_eq %>
+      </div>
+    </div>
+    <div class="row-fluid search-row">
+      <div class="span12 search-col">
+        <%= f.submit t(".search"), class: :btn %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @properties %>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th><%= Property.h :area %></th>
+      <th><%= Property.h :length %></th>
+      <th><%= Property.h :width %></th>
+      <th><%= Property.h :floor_cnt %></th>
+      <th><%= Property.h :l_room_cnt %></th>
+      <th><%= Property.h :t_room_cnt %></th>
+      <th><%= Property.h :year_built %></th>
+      <th><%= Property.h :tel %></th>
+      <th><%= Property.h :email %></th>
+      <th></th>
+      <th></th>
+    </tr>
+<% @properties.each do |property| %>
+    <tr>
+      <td><%= property.area %></td>
+      <td><%= property.length %></td>
+      <td><%= property.width %></td>
+      <td><%= property.floor_cnt %></td>
+      <td><%= property.l_room_cnt %></td>
+      <td><%= property.t_room_cnt %></td>
+      <td><%= property.year_built %></td>
+      <td><%= property.tel %></td>
+      <td><%= property.email %></td>
+      <td><%= link_to t(".edit"), edit_admin_property_path(property) %></td>
+      <td><%= link_to t(".destroy"), admin_property_path(property), method: :delete, data: {confirm: t("confirmation.delete")} %></td>
+    </tr>
+<% end %>
+  </table>
+  <%= paginate @properties %>
+</section>

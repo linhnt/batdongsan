@@ -60,13 +60,10 @@ en:
       staff: "在籍女性"
     attributes:
       admin:
-        name: "名前"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード（確認）"
-        disabled: "状態"
-        created_at: "作成日"
-        updated_at: "更新日"
+        name: "Tên"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Xác nhận password"
     values:
       staff:
         visibility:

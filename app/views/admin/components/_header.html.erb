@@ -8,7 +8,7 @@
       </a>
       <a class="brand" href="#">BDS</a>
       <ul id="user-actions">
-        <li><span class="name"><%= current_admin.name %></span><%= t(".logged_in_as") %></li>
+        <li><span class="name"><%= current_admin.name %></span></li>
         <li class="separator">|</li>
         <li><%= link_to t(".logout"), destroy_admin_session_path, method: :delete %></li>
       </ul>

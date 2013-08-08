@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805073023) do
+ActiveRecord::Schema.define(:version => 20130808061623) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,5 +31,40 @@ ActiveRecord::Schema.define(:version => 20130805073023) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "area_points", :force => true do |t|
+    t.integer  "properties_id"
+    t.decimal  "latitude",      :precision => 15, :scale => 12
+    t.decimal  "longitude",     :precision => 15, :scale => 12
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  create_table "prices", :force => true do |t|
+    t.integer  "properties_id"
+    t.date     "price_date"
+    t.float    "wanted_price"
+    t.float    "rent_price"
+    t.float    "service_price"
+    t.float    "sold_price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "properties", :force => true do |t|
+    t.float    "area"
+    t.float    "length"
+    t.float    "width"
+    t.float    "useable_area"
+    t.integer  "floor_cnt"
+    t.integer  "l_room_cnt"
+    t.integer  "t_room_cnt"
+    t.date     "year_built"
+    t.integer  "tel"
+    t.string   "email"
+    t.string   "address_no"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end
