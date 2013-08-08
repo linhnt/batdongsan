@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(:version => 20130808061623) do
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
 
   create_table "area_points", :force => true do |t|
-    t.integer  "properties_id"
-    t.decimal  "latitude",      :precision => 15, :scale => 12
-    t.decimal  "longitude",     :precision => 15, :scale => 12
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.integer  "property_id"
+    t.decimal  "latitude",    :precision => 15, :scale => 12
+    t.decimal  "longitude",   :precision => 15, :scale => 12
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "prices", :force => true do |t|
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130808061623) do
     t.integer  "tel"
     t.string   "email"
     t.string   "address_no"
+    t.string   "photo1"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

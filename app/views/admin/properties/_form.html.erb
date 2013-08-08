@@ -6,37 +6,84 @@
     <title>Google maps select</title>
     <%= stylesheet_link_tag "bootstrap.min" %>
     <%= stylesheet_link_tag "add" %>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <%= stylesheet_link_tag "base" %>
+    <%= javascript_include_tag "googlemap"%>
+    <%= javascript_include_tag "jquery.min"%>
     <%= javascript_include_tag "bootstrap.min"%>
-    <%= javascript_include_tag "add"%>
-    <%= javascript_include_tag "live"%>
+    <%= javascript_include_tag (@property.new_record? ? "add" : "edit") %>
+    <%= javascript_include_tag "base"%>
   </head>
   <body>
     <div class="container">
       <div class="panel">
         <h4 class="header">Nhập Bất động sản mới</h4>
         <div class="content">
+          <%= link_to "Back", admin_properties_path, class: :btn %>
           <%= form_for [:admin, @property], html: {class: "form-horizontal"} do |f| %>
             <fieldset>
               <legend>Thông tin cơ bản</legend>
               
               <%= f.label :area %>
-              <%= f.text_field :area, class: "input-xlarge", required: true %>
+              <%= f.number_field :area, class: "input-xlarge", required: true, step: :any %>
               <span class="validation_error_message"><%= f.full_error_messages_for("area").first %></span>
               
-
+              <%= f.label :length %>
+              <%= f.number_field :length, class: "input-xlarge", required: true, step: :any %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("length").first %></span>
+              
+              <%= f.label :width %>
+              <%= f.number_field :width, class: "input-xlarge", required: true, step: :any %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("width").first %></span>
+              
+              <%= f.label :floor_cnt %>
+              <%= f.number_field :floor_cnt, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("floor_cnt").first %></span>
+              
+              <%= f.label :l_room_cnt %>
+              <%= f.number_field :l_room_cnt, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("l_room_cnt").first %></span>
+              
+              <%= f.label :t_room_cnt %>
+              <%= f.number_field :t_room_cnt, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("t_room_cnt").first %></span>
+              
+              <%= f.label :year_built %>
+              <%= f.text_field :year_built, class: "input-xlarge datepicker", readonly: true, required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("year_built").first %></span>
+              
+              <%= f.label :tel %>
+              <%= f.text_field :tel, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("tel").first %></span>
+              
+              <%= f.label :email %>
+              <%= f.email_field :email, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("email").first %></span>
+              
+              <%= f.label :photo1 %>
+              <%= f.file_field :photo1, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("photo1").first %></span>
             </fieldset>
 
             <fieldset>
-              <legend>Tọa độ<a class="btn btn-danger pull-right remove-area">Xóa hết</a></legend>
+              <legend>Tọa độ
+                <% if @property.new_record? %>
+                <a class="btn btn-danger pull-right remove-area">Xóa hết</a>
+                <% end %>
+              </legend>
               <label class="checkbox" title="Tự động chọn vùng hình vuông với bán kính chọn trước">
                 <input type="checkbox" name="auto-select">Chọn vùng tự động 
                 <span class="loader pull-right" style="display: none">Đang tải...</span>
               </label>
               <div class="point-list" data-hint='<span class="help-block">Click lên bản đồ để khoanh vùng</span>'>
                 <span class="help-block">Click lên bản đồ để khoanh vùng</span>
-                <ol></ol>
+                <ol>
+                  <% @property.area_points.each_with_index do |point, index|%>
+                  <li>Điểm <%= index + 1 %>
+                    <input type="hidden" name="lat_point[]" value="<%= point.latitude %>">
+                    <input type="hidden" name="lng_point[]" value="<%= point.longitude %>">
+                  </li>
+                  <% end %>
+                </ol>
               </div>
             </fieldset>
 

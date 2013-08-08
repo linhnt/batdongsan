@@ -1,5 +1,5 @@
 <section id="properties-show">
-  <h1 class="page-title"><%= t ".title", name: @property.name %></h1>
+  <h1 class="page-title"><%= t ".title" %></h1>
   <div class="actions">
     <%= link_to t(".edit"), edit_admin_property_path(@property), class: :btn %>
     <%= link_to t(".back"), admin_properties_path, class: :btn %>
@@ -13,6 +13,11 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><%= requirement_label @property, :photo1 %></td>
+        <td><%= Property.h :photo1 %></td>
+        <td><%= image_tag @property.photo1.thumbnail_big %></td>
+      </tr>
       <tr>
         <td><%= requirement_label @property, :area %></td>
         <td><%= Property.h :area %></td>

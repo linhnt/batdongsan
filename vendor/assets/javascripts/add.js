@@ -6,8 +6,11 @@ var countMarker = 0;
 var selectHandler = false;
 
 $(document).ready(function() {
+  $(".datepicker").datepicker({
+    dateFormat: "yy-mm-dd"
+  });
 	initializeMap();
-	displayArea();//Vẽ lại area trong trường hợp Edit
+	//displayArea();//Vẽ lại area trong trường hợp Edit
 	addSelectHandler();
 
 	$(document).on('click', '.remove-area', function(){
@@ -112,8 +115,8 @@ function addToList(pos){
 	var html = [
 		'<li class="marker-' + countMarker + '">',
 			'Điểm ' + countMarker,
-			'<input type="hidden" name="point[]" value="' + pos.lat() + '"/>',
-			'<input type="hidden" name="point[]" value="' + pos.lng() + '"/>',
+			'<input type="hidden" name="lat_point[]" value="' + pos.lat() + '"/>',
+			'<input type="hidden" name="lng_point[]" value="' + pos.lng() + '"/>',
 			'<a href="javascript:void(0)" class="remove-marker" onclick="return removeMarker(' + countMarker + ')">remove</a>',
 		'</li>'
 	];
@@ -155,9 +158,10 @@ function removeArea() {
 function displayArea() {
 	var bounds = new google.maps.LatLngBounds();
 	$('.point-list ol li').each(function(){
-		var pos = $(this).find('input').val().split(",");
-		pointArray.push(new google.maps.LatLng(pos[0], pos[1]));
-		bounds.extend(new google.maps.LatLng(pos[0], pos[1]));
+		var lat = $(this).find('input').first().val();
+		var lng = $(this).find('input').last().val();
+		pointArray.push(new google.maps.LatLng(lat, lng));
+		bounds.extend(new google.maps.LatLng(lat, lng));
 	});
 	drawArea();
 	map.fitBounds(bounds);

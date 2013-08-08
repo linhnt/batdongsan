@@ -14,16 +14,6 @@ en:
       side_menu:
         home:
           header: "Menu"
-        manage_shops:
-          header: "お店情報の管理"
-          shops: "お店の編集追加"
-          staffs: "登録女性一覧"
-          banners: "有料広告掲載"
-          charges: "掲載料金一覧"
-          auctions: "オークション"
-          announcements: "お知らせ"
-          shop_groups: "店舗グループ"
-          blogs: "ブログ管理"
     admins:
       index:
         title: "Admin"
@@ -34,18 +24,6 @@ en:
         edit: "Sửa"
         destroyed: "Xóa admin thành công"
         you: "（あなた）"
-        disabled_true: "無効"
-        disabled_false: "有効"
-      new:
-        title: "スタッフの追加"
-        back: "スタッフ一覧に戻る"
-      edit:
-        title: "スタッフ %{name} の編集"
-        back: "スタッフ一覧に戻る"
-      form:
-        requirement: "条件"
-        field: "説明"
-        value: "入力"
       show:
         title: "%{name}"
         requirement: "条件"
@@ -57,6 +35,24 @@ en:
         updated: "スタッフ %{name} を編集しました。"
         disabled_true: "無効"
         disabled_false: "有効"
+    properties:
+      index:
+        title: "BDS"
+        add: "Thêm mới"
+        filter: "Lọc"
+        search: "Tìm"
+        destroy: "Xóa"
+        edit: "Sửa"
+        destroyed: "Xóa bds thành công"
+      show:
+        title: "BDS"
+        requirement: "Required"
+        field: "Trường"
+        value: "Gía trị"
+        edit: "Sửa"
+        back: "Quay lại"
+        created: "Tạo bđs thành công"
+        updated: "Cập nhật bđs thành công"
   views:
     pagination:
       first: "Trang đầu"

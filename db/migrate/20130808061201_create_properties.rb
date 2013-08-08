@@ -12,6 +12,7 @@ class CreateProperties < ActiveRecord::Migration
       t.integer :tel
       t.string :email
       t.string :address_no
+      t.string :photo1
 
       t.timestamps
     end

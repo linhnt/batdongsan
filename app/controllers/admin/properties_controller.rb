@@ -20,6 +20,9 @@ class Admin::PropertiesController < Admin::BaseAdminController
 
   def create
     if @property.save
+      params[:lat_point].each_with_index do |point, index|
+        @property.area_points.create(latitude: point, longitude: params[:lng_point][index])
+      end
       redirect_to admin_property_path(@property), notice: :".created"
     else
       render action: :new

@@ -29,6 +29,7 @@
   <%= paginate @properties %>
   <table class="table table-bordered table-striped">
     <tr>
+      <th><%= Property.h :photo1 %></th>
       <th><%= Property.h :area %></th>
       <th><%= Property.h :length %></th>
       <th><%= Property.h :width %></th>
@@ -43,6 +44,7 @@
     </tr>
 <% @properties.each do |property| %>
     <tr>
+      <td><%= image_tag property.photo1.thumbnail_small %></td>
       <td><%= property.area %></td>
       <td><%= property.length %></td>
       <td><%= property.width %></td>
