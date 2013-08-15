@@ -23,6 +23,10 @@
             <fieldset>
               <legend>Thông tin cơ bản</legend>
               
+              <%= f.label :address_no %>
+              <%= f.text_field :address_no, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("address_no").first %></span>
+              
               <%= f.label :area %>
               <%= f.number_field :area, class: "input-xlarge", required: true, step: :any %>
               <span class="validation_error_message"><%= f.full_error_messages_for("area").first %></span>
@@ -54,6 +58,40 @@
               <%= f.label :tel %>
               <%= f.text_field :tel, class: "input-xlarge", required: true %>
               <span class="validation_error_message"><%= f.full_error_messages_for("tel").first %></span>
+              
+              <%= f.label :sale_type %>
+              <%= f.text_field :sale_type, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("sale_type").first %></span>
+              
+              <%= f.label :build_type %>
+              <%= f.text_field :build_type, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("build_type").first %></span>
+              
+              <%= f.label :ownage_type %>
+              <%= f.text_field :ownage_type, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("ownage_type").first %></span>
+              
+              <%= f.label :owner %>
+              <%= f.text_field :owner, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("owner").first %></span>
+              
+              <%= f.label :street %>
+              <%= f.text_field :street, class: "input-xlarge", required: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("street").first %></span>
+              
+              <%= f.label :m_city_id %>
+              <%= f.collection_select :m_city_id, M::City.all, :id, :name, prompt: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("m_city_id").first %></span>
+              
+              <%= f.label :m_prefecture_id %>
+              <% prefectures = @property.m_city_id.nil? ? M::Prefecture.where(id: 0) : M::Prefecture.where(m_city_id: @property.m_city_id) %>
+              <%= f.collection_select :m_prefecture_id, prefectures.all, :id, :name, prompt: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("m_prefecture_id").first %></span>
+              
+              <%= f.label :m_district_id %>
+              <% districts = @property.m_prefecture_id.nil? ? M::District.where(id: 0) : M::District.where(m_prefecture_id: @property.m_prefecture_id) %>
+              <%= f.collection_select :m_district_id, districts.all, :id, :name, prompt: true %>
+              <span class="validation_error_message"><%= f.full_error_messages_for("m_district_id").first %></span>
               
               <%= f.label :email %>
               <%= f.email_field :email, class: "input-xlarge", required: true %>
@@ -95,5 +133,52 @@
 
       <div id="map-canvas"></div>
     </div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#property_m_city_id").change(function () {
+        id = $(this).val();
+        if (id==""){
+          $("#property_m_prefecture_id").html("<option value>Chọn giá trị</option>");
+          return;
+        }
+        $("#property_m_prefecture_id").attr("disabled","disabled");
+        $.ajax({
+            type: "GET",
+            url: "<%= user_m_prefectures_path %>",
+            data: "id=" + id,
+            success: function (data) {
+                $("#property_m_prefecture_id").html("<option value>Chọn giá trị</option>");
+                for (var i = 0; i < data.length; i++) {
+                    option = "<option value='" + data[i].id + "'>" + data[i].name  + "</option>";
+                    $("#property_m_prefecture_id").append(option);
+                }
+                $("#property_m_prefecture_id").removeAttr("disabled");
+            }
+        });
+    })
+    
+    $("#property_m_prefecture_id").change(function () {
+        id = $(this).val();
+        if (id==""){
+          $("#property_m_district_id").html("<option value>Chọn giá trị</option>");
+          return;
+        }
+        $("#property_m_district_id").attr("disabled","disabled");
+        $.ajax({
+            type: "GET",
+            url: "<%= user_m_districts_path %>",
+            data: "id=" + id,
+            success: function (data) {
+                $("#property_m_district_id").html("<option value>Chọn giá trị</option>");
+                for (var i = 0; i < data.length; i++) {
+                    option = "<option value='" + data[i].id + "'>" + data[i].name  + "</option>";
+                    $("#property_m_district_id").append(option);
+                }
+                $("#property_m_district_id").removeAttr("disabled");
+            }
+        });
+    })
+  })
+</script>
   </body>
 </html>

@@ -2,52 +2,30 @@
 @import "shared/mixins.css.less";
 #news {
   margin-bottom: 40px;
-
-  h3 {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    .border-radiuses(4px, 0, 0, 4px);
-    padding: 5px;
-  }
   p {
     text-align: right;
-    margin-top: -28px;
+    margin-top: -42px;
+    margin-bottom: 15px;
     padding: 5px 10px 5px 0;
   }
-  dl {
-    margin: 0 15px;
-    dt {
-      float: left;
-      width: 120px;
-    }
-    dd {
-      margin-left: 130px;
-      margin-bottom: 10px;
-    }
-    .clearfix();
+  #news-date {
+    width: 25%;
+  }
+  #news-title {
+    width: 75%;
   }
 }
 
-#shop-setting {
-  h3 {
-    border: 1px solid #ccc;
-    border-bottom: none;
-    .border-radiuses(4px, 0, 0, 4px);
-    padding: 5px;
-  }
-  #shop-setting-inner {
-    border: 1px solid #ccc;
-    border-top: none;
-    padding-bottom: 15px;
-    #plan {
-      float: left;
-      width: 260px;
-      text-align: center;
+#shop-setting-inner {
+  table {
+    margin-top: 8px;
+    tr {
+      background: #fff;
     }
-    #settings {
-      width: 450px;
-      float: left;
+    th {
+      width: 25%;
+      background: #eee;
+      text-align: left;
     }
-    .clearfix();
   }
 }

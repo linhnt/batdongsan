@@ -1,0 +1,9 @@
+/*
+ *= require_self
+ *= require bootstrap_and_overrides
+ *= require jquery.ui.all
+ *= require jquery
+ *= require_tree ./shared
+ *= require ./blog/manually_included/common
+ *= require_tree ./blog
+ */

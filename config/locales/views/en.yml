@@ -53,6 +53,10 @@ en:
         back: "Quay lại"
         created: "Tạo bđs thành công"
         updated: "Cập nhật bđs thành công"
+  user:
+    top:
+      index:
+        search: "Tìm"
   views:
     pagination:
       first: "Trang đầu"

@@ -37,6 +37,7 @@ table {
     border-bottom: 1px solid #c9c9c9;
     border-left: 1px solid #c9c9c9;
     padding: 4px 8px;
+    vertical-align: top;
   }
   tbody tr:nth-child(odd) {
     background: #f6f6f6;
@@ -63,7 +64,9 @@ h2 {
   border-bottom: 1px solid #c9c9c9;
 }
 h3 {
-  font-size: 15px;
+  font-size: 16px;
+  border-bottom: 2px solid #f47e27;
+  margin-bottom: 15px;
 }
 h4, h5, h6 {
   font-size: 12px;
@@ -72,18 +75,280 @@ h4, h5, h6 {
 
 /* コンテンツレイアウト -------------------------------- */
 #manage-contents-container {
-  padding-top: 20px;
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -khtml-box;
+  background: #eee;
   #manage-nav {
+    -webkit-box-orditional-group: 1;
     width: 230px;
-    padding: 8px 8px 8px 15px;
-    float: left;
+    padding: 20px 8px 8px 15px;
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border: 1px solid #999;
+      border-bottom: none;
+      padding: 4px 6px;
+      height: 28px;
+      line-height: 28px;
+      .border-radiuses(4px, 0, 0, 4px);
+      .text-shadow(0 2px 0 rgba(255, 255, 255, 1));
+      .vertical-gradient(#fff, #eee);
+    }
+    .manage-navigation {
+      margin-bottom: 20px;
+      .nav-collapse {
+        border: 1px solid #999;
+        background: #fff;
+        .inner-shadow(0, 1px, 2px, 0, .15);
+        .border-radiuses(0, 4px, 4px, 0);
+        ul {
+          li {
+            margin: 0;
+            line-height: 2;
+            font-size: 14px;
+            a {
+              background-image: asset-url("manage/components/nav-cursor.gif");
+              background-repeat: no-repeat;
+              background-position: 10px 20px;
+              padding: 10px 10px 10px 20px;
+              display: block;
+              &.active, &:hover {
+                background-color: #fff8f2;
+                color: #666 !important;
+                text-decoration: none;
+              }
+              &.active {
+                cursor: default;
+                padding-left: 40px;
+                background-position: 30px 20px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
   #manage-contents {
-    margin-left: 278px;
-    margin-right: 20px;
+    -webkit-box-orditional-group: 2;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    padding-right: 20px;
+    background: #fff;
+    padding: 20px;
+    border-left: 1px solid #999;
+    .box-shadow(-1px 0 1px rgba(0, 0, 0, 0.15));
+    h2 {
+      color: #fff;
+      background: asset-url("manage/components/h2_bg.gif") repeat-x 0 0;
+      height: 37px;
+      line-height: 37px;
+      padding-left: 15px;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
   }
   .clearfix();
 }
 
 
+/* 説明書の表示ボタン ---------------------------------- */
+#show-description {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.description {
+  display: none;
+  font-size: 13px;
+  background: #ffd;
+  border: 1px solid #ff0;
+  padding: 10px;
+  margin-bottom: 15px;
+  .description-section {
+    margin-bottom: 10px;
+  }
+  ul {
+    margin-left:20px;
+  }
+  ul li {
+    list-style-type: disc;
+  }
+  p {
+    margin-top: 4px;
+  }
+  h4 {
+    margin-top: 15px;
+  }
+}
 
+
+/* Bootstrapアラート系 */
+.alert {
+  padding: 12px 8px;
+  border-width: 1px;
+  border-style: solid;
+  margin-bottom: 15px;
+  .border-radius(4px);
+  display: none;
+  &.in {
+    display: block;
+  }
+  button {
+    padding: 0;
+    font-size: 15px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    opacity: 0.4;
+    color: inherit;
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  &.alert-success {
+    background: #dfd;
+    border-color: #393;
+    color: #393;
+  }
+  &.alert-error {
+    background: #fee;
+    border-color: #f99;
+    color: #c33;
+  }
+}
+
+
+/* 装飾クラス ------------------------------------------ */
+.size11 {
+  .fsize(11px);
+}
+.size12 {
+  .fsize();
+}
+.size13 {
+  .fsize(13px);
+}
+.size14 {
+  .fsize(14px);
+}
+.size15 {
+  .fsize(15px);
+}
+.size16 {
+  .fsize(16px);
+}
+.size17 {
+  .fsize(17px);
+}
+.size18 {
+  .fsize(18px);
+}
+.size19 {
+  .fsize(19px);
+}
+.size20 {
+  .fsize(20px);
+}
+.align-center {
+  .align();
+}
+.align-left {
+  .align(left);
+}
+.align-right {
+  .align(right);
+}
+.bold {
+  font-weight: bold;
+}
+
+.btn {
+  color: #666;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 14px 6px;
+  font-size: 14px;
+  line-height: normal;
+  border: 1px solid #ccc;
+  transition: 0.1s linear all;
+  text-decoration: none;
+  background-color: #eee;
+  background-repeat: no-repeat;
+  .vertical-gradient(#fff, #eee);
+  .border-radius(3px);
+  .text-shadow(0 0 1px rgba(255, 255, 255, .25));
+  .box-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  background-color: #eee;
+  vertical-align: middle;
+  &:hover {
+    background-position: 0 -15px;
+  }
+  &.success, &.ok, &.green {
+    color: #fff;
+    border-color: #57a957 #57a957 #3d773d;
+    .vertical-gradient(#62c462, #57a957);
+    background-color: #57a957;
+  }
+  &.error, &.danger, &.warning, &.red {
+    color: #fff;
+    border-color: #c43c35 #c43c35 #882a25;
+    .vertical-gradient(#ee5f5b, #c43c35);
+    background-color: #c43c35;
+  }
+  &.primary, &.blue {
+    color: #fff;
+    border-color: #0064cd #0064cd #003f81;
+    .vertical-gradient(#049cdb, #0064cd);
+    background-color: #0064cd;
+  }
+  &.mini {
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+}
+a.btn {
+  text-decoration: none;
+  color: #666;
+}
+
+.margin-top5 {
+  margin-top: 5px;
+}
+.margin-top10 {
+  margin-top: 10px;
+}
+.margin-top15 {
+  margin-top: 15px;
+}
+.margin-top20 {
+  margin-top: 20px;
+}
+
+
+/* 入力フィールドなどの装飾 ---------------------------- */
+input, input[type=text] {
+  &.text {
+    padding: 5px;
+    font-size: 16px;
+    width: 80%;
+    text-align: left;
+    border: 1px solid #999;
+  }
+}
+textarea {
+  &.textarea {
+    padding: 5px;
+    font-size: 16px;
+    width: 75%;
+    text-align: left;
+    height: 120px;
+    border: 1px solid #999;
+  }
+}
+select {
+  padding: 3px;
+  font-size: 16px;
+}

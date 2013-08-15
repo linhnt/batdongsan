@@ -1,0 +1,9 @@
+/*
+ *= require_self
+ *= require jquery.ui.all
+ *= require_tree ./shared
+ *= require jquery
+ *= require ./manage/manually_included/common
+ *= require ./manage/manually_included/_reset
+ *= require_tree ./manage
+ */

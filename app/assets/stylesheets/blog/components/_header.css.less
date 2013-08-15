@@ -1,0 +1,64 @@
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "shared/mixins.css.less";
+#global-header {
+  .global-header-fill {
+    .gradient(#444, #000);
+    padding: 14px 0 18px;
+    .container {
+      .clearfix();
+      #company-name {
+        color: #fff;
+        margin: 0;
+        line-height: 40px;
+      }
+      #system-nav {
+        color: #fff;
+        margin: 10px 0;
+        line-height: 40px;
+        li {
+          list-style: none;
+          margin: 0 4px;
+        }
+        a {
+          color: #333;
+          &:hover {
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+  .nav-fill, .nav-fill .navbar-inner {
+    .gradient(#0DF, #09F);
+    border: none;
+  }
+  .navbar-inner {
+    padding: 0;
+    .nav > li {
+      &.open > a {
+        .gradient(#0DF, #09F);
+      }
+      & > a {
+        color: #fff;
+        .text-shadow(-1px -1px 0px #888);
+        &.active, &:hover {
+          .gradient(#09F, #0DF);
+        }
+      }
+      &.dropdown {
+        .dropdown-toggle b.caret {
+          color: #fff;
+        }
+        ul.dropdown-menu {
+          a {
+            color: #fff;
+            &:hover {
+              background: #fbd;
+            }
+          }
+        }
+      }
+    }
+  }
+}

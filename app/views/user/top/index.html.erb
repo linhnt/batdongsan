@@ -1,0 +1,103 @@
+<%= search_form_for @q, url: user_root_path, method: :get do |f| %>
+  <%= f.label :address_no_cont %>
+  <%= f.text_field :address_no_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :area_eq %>
+  <%= f.number_field :area_eq, class: "input-xlarge" , step: :any %>
+  
+  <%= f.label :length_eq %>
+  <%= f.number_field :length_eq, class: "input-xlarge", step: :any %>
+  
+  <%= f.label :width_eq %>
+  <%= f.number_field :width_eq, class: "input-xlarge", step: :any %>
+  
+  <%= f.label :floor_cnt_eq %>
+  <%= f.number_field :floor_cnt_eq, class: "input-xlarge"  %>
+  
+  <%= f.label :l_room_cnt_eq %>
+  <%= f.number_field :l_room_cnt_eq, class: "input-xlarge"  %>
+  
+  <%= f.label :t_room_cnt_eq %>
+  <%= f.number_field :t_room_cnt_eq, class: "input-xlarge"  %>
+   
+  <%= f.label :tel_cont %>
+  <%= f.text_field :tel_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :sale_type_cont %>
+  <%= f.text_field :sale_type_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :build_type_cont %>
+  <%= f.text_field :build_type_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :ownage_type_cont %>
+  <%= f.text_field :ownage_type_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :owner_cont %>
+  <%= f.text_field :owner_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :street_cont %>
+  <%= f.text_field :street_cont, class: "input-xlarge"  %>
+  
+  <%= f.label :m_city_id_eq %>
+  <%= f.collection_select :m_city_id_eq, M::City.all, :id, :name, prompt: true %>
+  
+  <%= f.label :m_prefecture_id_eq %>
+  <%= f.collection_select :m_prefecture_id_eq, M::Prefecture.where(id: 0), :id, :name, prompt: true %>
+  
+  <%= f.label :m_district_id_eq %>
+  <%= f.collection_select :m_district_id_eq, M::District.where(id: 0), :id, :name, prompt: true %>
+  
+  <%= f.label :email_cont %>
+  <%= f.text_field :email_cont, class: "input-xlarge"  %>
+  
+  <%= f.submit t(".search"), class: :btn %>
+<% end %>
+<%= content_for :bottom do %>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#q_m_city_id_eq").change(function () {
+        id = $(this).val();
+        if (id==""){
+          $("#q_m_prefecture_id_eq").html("<option value>Chọn giá trị</option>");
+          return;
+        }
+        $("#q_m_prefecture_id_eq").attr("disabled","disabled");
+        $.ajax({
+            type: "GET",
+            url: "<%= user_m_prefectures_path %>",
+            data: "id=" + id,
+            success: function (data) {
+                $("#q_m_prefecture_id_eq").html("<option value>Chọn giá trị</option>");
+                for (var i = 0; i < data.length; i++) {
+                    option = "<option value='" + data[i].id + "'>" + data[i].name  + "</option>";
+                    $("#q_m_prefecture_id_eq").append(option);
+                }
+                $("#q_m_prefecture_id_eq").removeAttr("disabled");
+            }
+        });
+    })
+    
+    $("#q_m_prefecture_id_eq").change(function () {
+        id = $(this).val();
+        if (id==""){
+          $("#q_m_district_id_eq").html("<option value>Chọn giá trị</option>");
+          return;
+        }
+        $("#q_m_district_id_eq").attr("disabled","disabled");
+        $.ajax({
+            type: "GET",
+            url: "<%= user_m_districts_path %>",
+            data: "id=" + id,
+            success: function (data) {
+                $("#q_m_district_id_eq").html("<option value>Chọn giá trị</option>");
+                for (var i = 0; i < data.length; i++) {
+                    option = "<option value='" + data[i].id + "'>" + data[i].name  + "</option>";
+                    $("#q_m_district_id_eq").append(option);
+                }
+                $("#q_m_district_id_eq").removeAttr("disabled");
+            }
+        });
+    })
+  })
+</script>
+<% end %>

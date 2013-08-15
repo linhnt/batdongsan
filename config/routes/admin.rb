@@ -6,7 +6,7 @@ Batdongsan::Application.routes.draw do
   namespace :admin do
     resources :admins
     resources :properties
-    root to: "admin/admins#index"
+    root to: "admins#index"
   end
 
 end

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google maps select</title>
+    <%= stylesheet_link_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "add" %>
+    <%= stylesheet_link_tag "base" %>
+    <%= stylesheet_link_tag "colorbox" %>
+    <%= javascript_include_tag "googlemap"%>
+    <%= javascript_include_tag "jquery.min"%>
+    <%= javascript_include_tag "bootstrap.min"%>
+    <%= javascript_include_tag "base"%>
+    <%= javascript_include_tag "jquery.colorbox"%>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h4 class="header">Kết quả</h4>
+        <div class="content">
+          <div class="point-list" style="display: none;">
+                <ol>
+                  <% @property.area_points.each_with_index do |point, index|%>
+                  <li>
+                    <input type="hidden" name="lat_point[]" value="<%= point.latitude %>">
+                    <input type="hidden" name="lng_point[]" value="<%= point.longitude %>">
+                  </li>
+                  <% end %>
+                </ol>
+              </div>
+        </div>
+      </div>
+
+      <div id="map-canvas"></div>
+      <div style='display:none'>
+        <div id='inline_content' style='padding:10px; background:#fff;'>
+          <table class="table table-striped table-bordered">
+    <tbody>
+      <tr>
+        <td><%= Property.h :photo1 %></td>
+        <td><%= image_tag @property.photo1.thumbnail_big %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :area %></td>
+        <td><%= @property.area %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :length %></td>
+        <td><%= @property.length %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :width %></td>
+        <td><%= @property.width %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :floor_cnt %></td>
+        <td><%= @property.floor_cnt %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :l_room_cnt %></td>
+        <td><%= @property.l_room_cnt %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :t_room_cnt %></td>
+        <td><%= @property.t_room_cnt %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :year_built %></td>
+        <td><%= @property.year_built %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :tel %></td>
+        <td><%= @property.tel %></td>
+      </tr>
+      <tr>
+        <td><%= Property.h :email %></td>
+        <td><%= @property.email %></td>
+      </tr>
+    </tbody>
+  </table>
+        </div>
+      </div>
+    </div>
+  </body>
+<script type="text/javascript">
+var map, markerIcon, selectedArea;
+var pointArray = new Array();//selected points
+var markerArray = new Array();
+var countMarker = 0;
+//No need markers anymore
+var selectHandler = false;
+
+$(document).ready(function() {
+  initializeMap();
+  displayArea();//Vẽ lại area trong trường hợp Edit
+});
+
+
+function initializeMap() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(21.014654, 105.850255),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  // Create our "tiny" marker icon
+  markerIcon = new google.maps.MarkerImage(
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC",
+    new google.maps.Size(9, 9),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(4, 5)
+  );
+}
+
+
+
+function addMarker(location){
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: 'marker ' + (countMarker + 1),
+    icon: markerIcon
+  });
+  markerArray.push(marker);
+  pointArray.push(new google.maps.LatLng(location.lat(), location.lng()));
+  countMarker++;
+  addToList(location);
+}
+
+function removeMarker(iMarker){
+  if (markerArray.length != 0){
+    markerArray[iMarker - 1].setMap(null);
+    markerArray[iMarker - 1] = null;
+    updatePointArray();
+    $('.marker-' + iMarker).remove();
+    if (markerArray.length == 0) enableAutoSelectable();
+  }
+}
+
+function removeAllMarkers() {
+  for (i in markerArray) {
+    if (markerArray[i] != null) {
+      markerArray[i].setMap(null)
+    }
+  }
+  markerArray.length = 0;
+  pointArray.length = 0;
+  countMarker = 0;
+}
+
+function addToList(pos){
+  var listContainer = $('.point-list ol');
+  var html = [
+    '<li class="marker-' + countMarker + '">',
+      'Điểm ' + countMarker,
+      '<input type="hidden" name="lat_point[]" value="' + pos.lat() + '"/>',
+      '<input type="hidden" name="lng_point[]" value="' + pos.lng() + '"/>',
+      '<a href="javascript:void(0)" class="remove-marker" onclick="return removeMarker(' + countMarker + ')">remove</a>',
+    '</li>'
+  ];
+  listContainer.append(html.join(''));
+}
+
+function addRectangle(pos, size) {
+  var size = size.split(",") || size.split(" ");
+  if (isNaN(parseInt(size[0]))) size[0] = 20;
+  if (isNaN(parseInt(size[1]))) size[1] = 20;
+    
+  addMarker(new google.maps.LatLng(pos.lat() - size[0]/2000, pos.lng() - size[1]/2000));
+  addMarker(new google.maps.LatLng(pos.lat() - size[0]/2000, pos.lng() + size[1]/2000));
+  addMarker(new google.maps.LatLng(pos.lat() + size[0]/2000, pos.lng() + size[1]/2000));
+  addMarker(new google.maps.LatLng(pos.lat() + size[0]/2000, pos.lng() - size[1]/2000));
+  drawArea();
+}
+
+function drawArea() {
+  if (!selectedArea){
+    selectedArea = new google.maps.Polygon({
+      paths: pointArray,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 3,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: map
+    });
+  } else{
+    selectedArea.setPaths(pointArray);
+  }
+}
+
+function removeArea() {
+  drawArea();
+}
+
+function displayArea() {
+  var bounds = new google.maps.LatLngBounds();
+  $('.point-list ol li').each(function(){
+    var lat = $(this).find('input').first().val();
+    var lng = $(this).find('input').last().val();
+    pointArray.push(new google.maps.LatLng(lat, lng));
+    bounds.extend(new google.maps.LatLng(lat, lng));
+  });
+  drawArea();
+  mapClick = google.maps.event.addListener( selectedArea, "mouseover", function( evt ) {
+    $.colorbox({
+    width: "30%",
+    inline: true,
+    escKey: false,
+    overlayClose: false,
+    href: "#inline_content",
+  });
+} );
+  //map.fitBounds(bounds);
+}
+
+function updatePointArray() {
+  pointArray.length = 0;
+  for (i in markerArray){
+    if (markerArray[i] != null){
+      pointArray.push(new google.maps.LatLng(markerArray[i].getPosition().lat(), markerArray[i].getPosition().lng()));
+    }
+  }
+  drawArea();
+}
+</script>
+</html>

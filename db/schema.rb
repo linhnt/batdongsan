@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808061623) do
+ActiveRecord::Schema.define(:version => 20130815062756) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,6 +40,30 @@ ActiveRecord::Schema.define(:version => 20130808061623) do
     t.datetime "updated_at",                                  :null => false
   end
 
+  create_table "m_cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "m_districts", :force => true do |t|
+    t.string   "name"
+    t.integer  "m_prefecture_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "m_districts", ["m_prefecture_id"], :name => "index_m_districts_on_m_prefecture_id"
+
+  create_table "m_prefectures", :force => true do |t|
+    t.string   "name"
+    t.integer  "m_city_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "m_prefectures", ["name"], :name => "index_m_prefectures_on_name"
+
   create_table "prices", :force => true do |t|
     t.integer  "properties_id"
     t.date     "price_date"
@@ -56,6 +80,11 @@ ActiveRecord::Schema.define(:version => 20130808061623) do
     t.float    "length"
     t.float    "width"
     t.float    "useable_area"
+    t.string   "sale_type"
+    t.string   "build_type"
+    t.string   "ownage_type"
+    t.string   "owner"
+    t.string   "street"
     t.integer  "floor_cnt"
     t.integer  "l_room_cnt"
     t.integer  "t_room_cnt"
@@ -64,8 +93,11 @@ ActiveRecord::Schema.define(:version => 20130808061623) do
     t.string   "email"
     t.string   "address_no"
     t.string   "photo1"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "m_prefecture_id"
+    t.integer  "m_city_id"
+    t.integer  "m_district_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

@@ -18,7 +18,7 @@
   </div>
 <% end -%>
 <% content_for :javascripts do -%>
-<%= javascript_include_tag(:application) %>
+<%= javascript_include_tag(:admin) %>
 <script>
   $(".undeletable").click(function(){
     alert("<%= t "views.common.undeletable" %>");
