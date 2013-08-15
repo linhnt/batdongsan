@@ -5,6 +5,5 @@ class CreateMDistricts < ActiveRecord::Migration
       t.references :m_prefecture
       t.timestamps
     end
-    add_index :m_districts, :m_prefecture_id
   end
 end
