@@ -2,7 +2,72 @@
 <%= stylesheet_link_tag :admin, media: "all" %>
 <% end -%>
 <% content_for :content do -%>
-  <%= yield %>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "ĐCĐ", root_path, class: :brand %>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><%= link_to "Trang chủ", root_path, id: :home_page_tab %><li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bán <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Nhà đất</a></li>
+                  <li><a href="#">Căn hộ</a></li>
+                  <li><a href="#">Văn phòng</a></li>
+                  <li><a href="#">Mặt bằng thương mại</a></li>
+                  <li><a href="#">Khác</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cho thuê <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Nhà đất</a></li>
+                  <li><a href="#">Căn hộ</a></li>
+                  <li><a href="#">Văn phòng</a></li>
+                  <li><a href="#">Mặt bằng thương mại</a></li>
+                  <li><a href="#">Khác</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thông tin thị trường <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Bất động sản</a></li>
+                  <li><a href="#">Vàng/Ngoại tệ</a></li>
+                  <li><a href="#">Chứng khoán</a></li>
+                  <li><a href="#">Thông tin kinh tế - xã hội</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tư vấn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Diễn đàn bất động sản</a></li>
+                  <li><a href="#">Đặt câu hỏi</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tìm nhà cung cấp dịch vụ <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">.....</a></li>
+                  <li><a href="#">.....</a></li>
+                </ul>
+              </li>
+              <li><%= link_to "Tìm kiếm", user_root_path, id: :search_tab %></li>
+              <li><%= link_to "Trang quản lý", admin_root_path %><li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
 <% end -%>
 <% content_for :javascripts do -%>
 <%= javascript_include_tag(:admin) %>
