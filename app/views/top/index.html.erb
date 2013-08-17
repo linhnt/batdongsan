@@ -1,2 +1,10 @@
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <%= link_to "Search", "/user" %>
 <%= link_to "Admin", admin_admins_path %>
+<% content_for :bottom do %>
+<script>
+  $(function(){
+    $("#home_page_tab").parent().addClass("active");
+  })
+</script>
+<% end %>

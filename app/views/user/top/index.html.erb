@@ -55,6 +55,7 @@
 <%= content_for :bottom do %>
 <script type="text/javascript">
   $(document).ready(function () {
+    $("#search_tab").parent().addClass("active");
     $("#q_m_city_id_eq").change(function () {
         id = $(this).val();
         if (id==""){
