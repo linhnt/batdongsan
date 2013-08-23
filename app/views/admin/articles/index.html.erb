@@ -1,0 +1,45 @@
+<section id="articles-index" class="row-fluid">
+  <h1 class="page-title"><%= t ".title" %></h1>
+  <div class="actions">
+    <%= link_to t(".add"), new_admin_article_path, class: :btn %>
+    <%= link_to t(".filter"), "#", class: %w(btn search-form-toggle), "data-target" => "search-form" %>
+  </div>
+  <%= search_form_for @q, url: admin_articles_path, method: :get,
+    html: {id: "search-form", class: "search-form #{@q.conditions.empty? ? "" : "show"}"} do |f| %>
+    <div class="row-fluid search-row">
+      <div class="span4 search-col">
+        <%= f.label :title_cont %>
+        <%= f.text_field :title_cont %>
+      </div>
+    </div>
+    <div class="row-fluid search-row">
+      <div class="span12 search-col">
+        <%= f.submit t(".search"), class: :btn %>
+      </div>
+    </div>
+  <% end %>
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th><%= Article.h :title %></th>
+      <th><%= Article.h :content %></th>
+      <th><%= Article.h :thumbnail %></th>
+      <th><%= Article.h :m_news_category_id %></th>
+      <th><%= Article.h :created_at %></th>
+      <th><%= Article.h :updated_at %></th>
+      <th></th>
+      <th></th>
+    </tr>
+<% @articles.each do |article| -%>
+    <tr>
+      <td><%= link_to "#{article.title}", admin_article_path(article) %></td>
+      <td><%= article.content.html_safe %></td>
+      <td><%= image_tag article.thumbnail %></td>
+      <td><%= article.m_news_category.name %></td>
+      <td><%= article.created_at %></td>
+      <td><%= article.updated_at %></td>
+      <td><%= link_to t(".edit"), edit_admin_article_path(article) %></td>
+      <td><%= link_to t(".destroy"), admin_article_path(article), method: :delete, data: {confirm: t("confirmation.delete")} %></td>
+    </tr>
+<% end -%>
+  </table>
+</section>

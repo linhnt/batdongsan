@@ -7,6 +7,7 @@ module SideMenuHelper
         collapses: {
           admins: -> {admin_admins_path},
           properties: ->{admin_properties_path},
+          articles: ->{admin_articles_path},
         }
       },
     ].compact

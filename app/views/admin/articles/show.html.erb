@@ -1,0 +1,38 @@
+<section id="articles-show">
+  <h1 class="page-title"><%= t ".title" %></h1>
+  <div class="actions">
+    <%= link_to t(".edit"), edit_admin_article_path(@article), class: :btn %>
+    <%= link_to t(".back"), admin_articles_path, class: :btn %>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= t ".requirement" %></th>
+        <th><%= t ".field" %></th>
+        <th><%= t ".value" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= requirement_label @article, :title %></td>
+        <td><%= Article.h :title %></td>
+        <td><%= @article.title %></td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :content %></td>
+        <td><%= Article.h :content %></td>
+        <td><%= @article.content.try(:html_safe) %></td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :thumbnail %></td>
+        <td><%= Article.h :thumbnail %></td>
+        <td><%= image_tag @article.thumbnail %></td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :m_news_category_id %></td>
+        <td><%= Article.h :m_news_category_id %></td>
+        <td><%= @article.m_news_category.name %></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

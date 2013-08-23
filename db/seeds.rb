@@ -8,7 +8,7 @@
 require "master_importer/csv_importer"
 
 # Master Datas
-[M::City, M::District, M::Prefecture].each do |model|
+[M::City, M::District, M::Prefecture, M::NewsCategory].each do |model|
     MasterImporter::CSVImporter.new(model).execute
 end
 PASSWORD = "12345678"

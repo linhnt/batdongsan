@@ -64,6 +64,11 @@ en:
         email: "Email"
         password: "Password"
         password_confirmation: "Xác nhận password"
+      article:
+        title: "Tiêu đề"
+        content: "Nội dung"
+        thumbnail: "Ảnh tiêu đề"
+        m_news_category_id: "Tags"
     values:
       staff:
         visibility:

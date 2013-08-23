@@ -1,0 +1,49 @@
+<%= form_for [:admin, @article], html: {class: "form-horizontal"} do |f| %>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= t ".requirement" %></th>
+        <th><%= t ".field" %></th>
+        <th><%= t ".value" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= requirement_label @article, :title %></td>
+        <td><%= f.label :title %></td>
+        <td>
+          <%= f.text_field :title, class: "input-xlarge", required: true %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("title").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :content %></td>
+        <td><%= f.label :content %></td>
+        <td>
+          <%= f.cktext_area :content, class: %W(ckeditor) %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("content").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :m_news_category_id %></td>
+        <td><%= f.label :m_news_category_id %></td>
+        <td>
+          <%= f.collection_select :m_news_category_id, M::NewsCategory.all, :id, :name, prompt: true %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("m_news_category_id").first %></span>
+        </td>
+      </tr>
+      <tr>
+        <td><%= requirement_label @article, :thumbnail %></td>
+        <td><%= f.label :thumbnail %></td>
+        <td>
+          <%= f.file_field :thumbnail %>
+          <span class="help-inline validation_error_message"><%= f.full_error_messages_for("thumbnail").first %></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-actions">
+    <%= f.submit class: %w(btn btn-primary) %>
+  </div>
+<% end %>

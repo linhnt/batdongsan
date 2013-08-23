@@ -14,6 +14,8 @@ en:
       side_menu:
         home:
           header: "Menu"
+          properties: "BĐS"
+          articles: "Bài báo"
     admins:
       index:
         title: "Admin"
@@ -53,6 +55,34 @@ en:
         back: "Quay lại"
         created: "Tạo bđs thành công"
         updated: "Cập nhật bđs thành công"
+    articles:
+      index:
+        title: "Các bài báo"
+        add: "Thêm bài báo mới"
+        filter: "Lọc"
+        destroy: "Xóa"
+        edit: "Sửa"
+        search: "Tìm"
+        destroyed: "Xóa bài báo thành công"
+      new:
+        title: "Tạo mới"
+        back: "Quay trở lại"
+      form:
+        requirement: "yêu cầu"
+        field: "Trường"
+        value: "Giá trị"
+      edit:
+        title: "Sửa bài báo"
+        back: "Quay trở lại"
+      show:
+        title: "Bài báo"
+        requirement: "yêu cầu"
+        field: "Trường"
+        value: "Giá trị"
+        edit: "Sửa"
+        back: "Quay trở lại"
+        created: "Tạo thành công"
+        updated: "Sửa thành công"
   user:
     top:
       index:

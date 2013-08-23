@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815062756) do
+ActiveRecord::Schema.define(:version => 20130823072114) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(:version => 20130815062756) do
     t.datetime "updated_at",                                  :null => false
   end
 
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.string   "thumbnail"
+    t.text     "content"
+    t.integer  "m_news_category_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "m_cities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -53,7 +62,11 @@ ActiveRecord::Schema.define(:version => 20130815062756) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "m_districts", ["m_prefecture_id"], :name => "index_m_districts_on_m_prefecture_id"
+  create_table "m_news_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "m_prefectures", :force => true do |t|
     t.string   "name"
