@@ -32,7 +32,7 @@
 <% @articles.each do |article| -%>
     <tr>
       <td><%= link_to "#{article.title}", admin_article_path(article) %></td>
-      <td><%= article.content.html_safe %></td>
+      <td><%= truncate(article.content) %></td>
       <td><%= image_tag article.thumbnail %></td>
       <td><%= article.m_news_category.name %></td>
       <td><%= article.created_at %></td>

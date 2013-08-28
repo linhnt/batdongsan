@@ -25,7 +25,7 @@ en:
         destroy: "Xóa"
         edit: "Sửa"
         destroyed: "Xóa admin thành công"
-        you: "（あなた）"
+        you: "Chính bạn"
       show:
         title: "%{name}"
         requirement: "条件"
@@ -39,15 +39,15 @@ en:
         disabled_false: "有効"
     properties:
       index:
-        title: "BDS"
+        title: "Bất động sản"
         add: "Thêm mới"
         filter: "Lọc"
         search: "Tìm"
         destroy: "Xóa"
         edit: "Sửa"
-        destroyed: "Xóa bds thành công"
+        destroyed: "Xóa bất động sản thành công"
       show:
-        title: "BDS"
+        title: "Bất động sản"
         requirement: "Required"
         field: "Trường"
         value: "Gía trị"
