@@ -1,5 +1,18 @@
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<div>
-<h2><%= @article.title %></h2>
-<%= @article.content.html_safe %>
+<div class = "one_article">
+  <div class = "title">
+    <%= @article.title %>
+  </div>
+  <div class = "article_image">
+    <%= image_tag(@article.thumbnail, class: :image) %>
+  </div>
+  <div class = "content">
+    <%= @article.content.html_safe %>
+  </div>
 </div>
+<% content_for :bottom do %>
+<script>
+  $(function(){
+    $("#tttt_tab").addClass("active");
+  })
+</script>
+<% end %>
