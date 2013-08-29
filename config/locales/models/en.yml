@@ -62,7 +62,8 @@ en:
       admin:
         name: "Tên"
         email: "Email"
-        password: "Password"
+        password: "Mật khẩu"
+        remember_me: "Ghi nhớ mật khẩu"
         password_confirmation: "Xác nhận password"
       article:
         title: "Tiêu đề"
