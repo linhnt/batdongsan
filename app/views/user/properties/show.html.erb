@@ -205,6 +205,7 @@ function displayArea() {
   });
   drawArea();
   mapClick = google.maps.event.addListener( selectedArea, "mouseover", function( evt ) {
+    delay(2000);
     $.colorbox({
     width: "30%",
     inline: true,
