@@ -24,6 +24,11 @@
         <td><%= @article.content.try(:html_safe) %></td>
       </tr>
       <tr>
+        <td><%= requirement_label @article, :summary %></td>
+        <td><%= Article.h :summary %></td>
+        <td><%= @article.summary %></td>
+      </tr>
+      <tr>
         <td><%= requirement_label @article, :thumbnail %></td>
         <td><%= Article.h :thumbnail %></td>
         <td><%= image_tag @article.thumbnail %></td>

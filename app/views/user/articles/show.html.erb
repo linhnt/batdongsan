@@ -7,7 +7,7 @@
     <%= link_to image_tag(article.thumbnail, class: :image), user_article_news_path(@cate, article) %>
   </div>
   <div class = "content">
-    <%= truncate(sanitize(article.content, tags: []), length: 250) %>
+    <%= article.summary %>
   </div>
 </div>
 <% end %>

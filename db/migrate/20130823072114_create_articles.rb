@@ -4,6 +4,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :title
       t.string :thumbnail
       t.text :content
+      t.text :summary
       t.references :m_news_category
 
       t.timestamps

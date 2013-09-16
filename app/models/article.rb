@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :content, :thumbnail, :title, :m_news_category_id
+  attr_accessible :content, :summary, :thumbnail, :title, :m_news_category_id
   
   belongs_to :m_news_category, class_name: M::NewsCategory.name
   
