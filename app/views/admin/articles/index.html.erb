@@ -22,6 +22,7 @@
     <tr>
       <th><%= Article.h :title %></th>
       <th><%= Article.h :content %></th>
+      <th><%= Article.h :summary %></th>
       <th><%= Article.h :thumbnail %></th>
       <th><%= Article.h :m_news_category_id %></th>
       <th><%= Article.h :created_at %></th>
@@ -33,6 +34,7 @@
     <tr>
       <td><%= link_to "#{article.title}", admin_article_path(article) %></td>
       <td><%= truncate(article.content) %></td>
+      <td><%= truncate(article.summary) %></td>
       <td><%= image_tag article.thumbnail %></td>
       <td><%= article.m_news_category.name %></td>
       <td><%= article.created_at %></td>

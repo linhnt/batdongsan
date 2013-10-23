@@ -84,12 +84,13 @@
     </div>
   </body>
 <script type="text/javascript">
-var map, markerIcon, selectedArea;
+var map, markerIcon, selectedArea, selectedAreaSymbol;
 var pointArray = new Array();//selected points
 var markerArray = new Array();
 var countMarker = 0;
 //No need markers anymore
 var selectHandler = false;
+var zoomToHideArea = 12;
 
 $(document).ready(function() {
   initializeMap();
@@ -112,9 +113,14 @@ function initializeMap() {
     new google.maps.Point(0, 0),
     new google.maps.Point(4, 5)
   );
+
+  bdsIcon = new google.maps.MarkerImage(
+    "/assets/bds.png",
+    new google.maps.Size(24, 24),
+    new google.maps.Point(0, 0),
+    new google.maps.Point(24, 12)
+  );
 }
-
-
 
 function addMarker(location){
   var marker = new google.maps.Marker({
@@ -189,6 +195,15 @@ function drawArea() {
   } else{
     selectedArea.setPaths(pointArray);
   }
+
+  //representative marker for area when zoom changed
+  var location = getAveragePosition(pointArray);//trung binh cong cac toa do cua Area
+  console.log(location.lat(), location.lng());
+  selectedAreaSymbol = new google.maps.Marker({
+    position: location,
+    // map: map,
+    icon: bdsIcon
+  });
 }
 
 function removeArea() {
@@ -205,16 +220,25 @@ function displayArea() {
   });
   drawArea();
   mapClick = google.maps.event.addListener( selectedArea, "mouseover", function( evt ) {
-    delay(2000);
-    $.colorbox({
-    width: "30%",
-    inline: true,
-    escKey: false,
-    overlayClose: false,
-    href: "#inline_content",
-  });
-} );
+      $.colorbox({
+      width: "30%",
+      inline: true,
+      escKey: false,
+      overlayClose: false,
+      href: "#inline_content",
+    });
+  } );
   //map.fitBounds(bounds);
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    var curZoom = map.getZoom();
+    if (curZoom <= zoomToHideArea) {
+      selectedArea.setMap(null);
+      selectedAreaSymbol.setMap(map);
+    } else {
+      selectedArea.setMap(map);
+      selectedAreaSymbol.setMap(null);
+    }
+  });
 }
 
 function updatePointArray() {
@@ -225,6 +249,16 @@ function updatePointArray() {
     }
   }
   drawArea();
+}
+
+function getAveragePosition(points) {
+  var sumLat = 0, sumLon = 0, len = points.length;
+  for (i in points) {
+    sumLat += points[i].lat();
+    sumLon += points[i].lng();
+  }
+
+  return new google.maps.LatLng(sumLat/len, sumLon/len);
 }
 </script>
 </html>
