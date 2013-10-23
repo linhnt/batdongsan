@@ -6,24 +6,7 @@
  *= require_self
  */
 body{
-  background-color: rgb(240, 240, 240);
-}
-
-.navbar-inverse .brand {
-  color: #FF0000;
-}
-
-.navbar-inverse .navbar-inner{
-  background-image: linear-gradient(to bottom, #444444, #222222);
-}
-
-.dropdown-menu li a:hover {
-  background-color: #444444;
-  background-image: -moz-linear-gradient(top, #444444, #222222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
-  background-image: -webkit-linear-gradient(top, #444444, #222222);
-  background-image: -o-linear-gradient(top, #444444, #222222);
-  background-image: linear-gradient(to bottom, #444444, #222222);
+  font-family: Helvetica,Arial,sans-serif;
 }
 
 .navbar-fixed-top{

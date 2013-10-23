@@ -2,7 +2,9 @@
 <%= stylesheet_link_tag :admin, media: "all" %>
 <% end -%>
 <% content_for :content do -%>
-
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <%= image_tag "/assets/banner.jpg", class: :banner_image %>
+  </div>
   <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -59,14 +61,20 @@
                 </ul>
               </li>
               <li><%= link_to "Tìm kiếm", user_root_path, id: :search_tab %></li>
-              <li><%= link_to "Trang quản lý", admin_root_path %><li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      <%= yield %>
+      <div class="span8">
+        <%= yield %>
+      </div>
+      <div class="span2">
+<% 40.times do %>
+        <%= link_to image_tag("/assets/banner.jpeg", style: "margin: 5px; border: 1px solid black;"), "#" %><br/>
+<% end %>
+      </div>
     </div>
 <% end -%>
 <% content_for :javascripts do -%>

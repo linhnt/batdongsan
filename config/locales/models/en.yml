@@ -68,6 +68,7 @@ en:
       article:
         title: "Tiêu đề"
         content: "Nội dung"
+        summary: "Tóm tắt"
         thumbnail: "Ảnh tiêu đề"
         m_news_category_id: "Tags"
     values:

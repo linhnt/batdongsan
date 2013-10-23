@@ -26,6 +26,14 @@
         </td>
       </tr>
       <tr>
+        <td><%= requirement_label @article, :summary %></td>
+        <td><%= f.label :summary %></td>
+        <td>
+          <%= f.text_field :summary %>
+          <span class="validation_error_message"><%= f.full_error_messages_for("content").first %></span>
+        </td>
+      </tr>
+      <tr>
         <td><%= requirement_label @article, :m_news_category_id %></td>
         <td><%= f.label :m_news_category_id %></td>
         <td>
