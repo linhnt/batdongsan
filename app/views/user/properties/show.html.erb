@@ -220,13 +220,15 @@ function displayArea() {
   });
   drawArea();
   mapClick = google.maps.event.addListener( selectedArea, "mouseover", function( evt ) {
-      $.colorbox({
-      width: "30%",
-      inline: true,
-      escKey: false,
-      overlayClose: false,
-      href: "#inline_content",
-    });
+    setTimeout(function(){
+        $.colorbox({
+        width: "30%",
+        inline: true,
+        escKey: true,
+        overlayClose: false,
+        href: "#inline_content",
+      });
+     }, 1000);
   } );
   //map.fitBounds(bounds);
   google.maps.event.addListener(map, 'zoom_changed', function() {
